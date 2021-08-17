@@ -21,15 +21,36 @@
         android:src="@drawable/ic_launcher_background"/>
 
     <TextView
+        android:id="@+id/descMovieGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/descMovieImage"/>
+
+    <TextView
         android:id="@+id/descMovieName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/descMovieImage" />
+        app:layout_constraintTop_toBottomOf="@+id/descMovieGroup" />
+
+    <TextView
+        android:id="@+id/descMovieRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/descMovieName"/>
+
+    <TextView
+        android:id="@+id/descMovieDateFrom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/descMovieRating"/>
 
     <TextView
         android:id="@+id/descMovieText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/descMovieName"/>
+        app:layout_constraintTop_toBottomOf="@+id/descMovieDateFrom"/>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
