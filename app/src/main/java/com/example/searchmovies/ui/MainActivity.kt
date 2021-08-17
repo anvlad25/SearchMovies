@@ -1,8 +1,8 @@
-package com.example.searchmovies
+package com.example.searchmovies.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.searchmovies.ui.main.MainFragment
+import com.example.searchmovies.R
 
 class MainActivity : AppCompatActivity() {
 
