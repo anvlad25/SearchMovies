@@ -10,5 +10,6 @@ data class MoviesData(
     val movieDesc: String,
     val movieDateFrom: Date,
     val movieRating: Int,
-    val movieGroup: String
+    val movieGroup: String,
+    var favorite: Boolean = false
 ) : Parcelable

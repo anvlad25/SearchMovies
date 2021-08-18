@@ -42,7 +42,7 @@ class MainFragment : Fragment() {
                         putParcelable(Constants.MOVIE_DESC, movie)
                     }
                     manager.beginTransaction()
-                        .replace(R.id.container, newInstance(bundle))
+                        .add(R.id.container, newInstance(bundle))
                         .addToBackStack("")
                         .commitAllowingStateLoss()
                 }
