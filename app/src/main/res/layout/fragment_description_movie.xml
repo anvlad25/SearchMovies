@@ -6,7 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.DescriptionMovie"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@color/white">
+
+    <ImageButton
+        android:id="@+id/favoriteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descMovieText"
+        android:src="@drawable/ic_baseline_favorite_border_24"/>
 
     <ImageView
         android:id="@+id/descMovieImage"
@@ -21,15 +32,36 @@
         android:src="@drawable/ic_launcher_background"/>
 
     <TextView
+        android:id="@+id/descMovieGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/descMovieImage"/>
+
+    <TextView
         android:id="@+id/descMovieName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/descMovieImage" />
+        app:layout_constraintTop_toBottomOf="@+id/descMovieGroup" />
+
+    <TextView
+        android:id="@+id/descMovieRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/descMovieName"/>
+
+    <TextView
+        android:id="@+id/descMovieDateFrom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/descMovieRating"/>
 
     <TextView
         android:id="@+id/descMovieText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/descMovieName"/>
+        app:layout_constraintTop_toBottomOf="@+id/descMovieDateFrom"/>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
