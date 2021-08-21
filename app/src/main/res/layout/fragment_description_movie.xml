@@ -37,6 +37,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/descMovieImage"/>
 
+
     <TextView
         android:id="@+id/descMovieName"
         android:layout_width="match_parent"
@@ -44,16 +45,34 @@
         app:layout_constraintTop_toBottomOf="@+id/descMovieGroup" />
 
     <TextView
-        android:id="@+id/descMovieRating"
-        android:layout_width="match_parent"
+        android:id="@+id/descMovieRatingText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/descMovieName"/>
+        app:layout_constraintTop_toBottomOf="@+id/descMovieName"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/description_movie_rating"/>
+
+    <TextView
+        android:id="@+id/descMovieRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/descMovieName"
+        app:layout_constraintStart_toEndOf="@+id/descMovieRatingText"/>
+
+    <TextView
+        android:id="@+id/descMovieDateFromText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/descMovieRating"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/description_movieD_date"/>
 
     <TextView
         android:id="@+id/descMovieDateFrom"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/descMovieRating"/>
+        app:layout_constraintTop_toBottomOf="@+id/descMovieRating"
+        app:layout_constraintStart_toEndOf="@+id/descMovieDateFromText"/>
 
     <TextView
         android:id="@+id/descMovieText"

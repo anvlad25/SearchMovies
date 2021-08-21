@@ -2,17 +2,17 @@ package com.example.searchmovies.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-
 import androidx.lifecycle.ViewModel
-import com.example.searchmovies.model.MoviesData
+import com.example.searchmovies.model.gson_model.trending.MoviesTrendingData
+import com.example.searchmovies.model.gson_model.trending.TrendingDTO
+import com.example.searchmovies.model.loader.LoadDataFromAPI
 import java.lang.Thread.sleep
-import java.util.*
 
 
-class MainViewModel(private val liveDataToObserve: MutableLiveData<List<MoviesData>> = MutableLiveData()) :
+class MainViewModel(private val liveDataToObserve: MutableLiveData<List<MoviesTrendingData>> = MutableLiveData()) :
     ViewModel() {
 
-    fun getData(): LiveData<List<MoviesData>> {
+    fun getData(): LiveData<List<MoviesTrendingData>> {
         getMoviesFromSource()
         return liveDataToObserve
     }
@@ -20,15 +20,28 @@ class MainViewModel(private val liveDataToObserve: MutableLiveData<List<MoviesDa
     private fun getMoviesFromSource() {
         Thread {
             sleep(Constants.SLEEP_THREAD)
-            liveDataToObserve.postValue(getDataMovies())
+            liveDataToObserve.postValue(getTreadingMovies())
         }.start()
     }
 
-    private fun getDataMovies() =
-        listOf(
-            MoviesData("Фильм1", "Описание1", Date(), 5, "Комедия"),
-            MoviesData("Фильм2", "Описание2", Date(), 4, "Ужасы"),
-            MoviesData("Фильм3", "Описание3", Date(), 7, "Боевик"),
-            MoviesData("Фильм4", "Описание4", Date(), 9, "Исторический")
-        )
+    private fun getTreadingMovies(): MutableList<MoviesTrendingData> {
+        val trendingDTO: TrendingDTO? = LoadDataFromAPI.loadTrending()
+        val listTrendingMovies: MutableList<MoviesTrendingData> = mutableListOf()
+
+        if (trendingDTO != null) {
+            trendingDTO.results.forEach {
+                listTrendingMovies.add(
+                    MoviesTrendingData(
+                        it.id,
+                        it.title,
+                        it.poster_path
+                    )
+                )
+            }
+        } else {
+            listTrendingMovies.add(MoviesTrendingData(1, "Фильм1"))
+        }
+
+        return listTrendingMovies
+    }
 }
