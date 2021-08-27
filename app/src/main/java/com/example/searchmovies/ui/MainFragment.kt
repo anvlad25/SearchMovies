@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.searchmovies.R
 import com.example.searchmovies.databinding.FragmentMoviesBinding
-import com.example.searchmovies.model.MoviesData
+import com.example.searchmovies.model.gson_model.trending.MoviesTrendingData
 import com.example.searchmovies.ui.adapter.MainFragmentAdapter
 import com.example.searchmovies.viewmodel.Constants
 import com.example.searchmovies.viewmodel.MainViewModel
@@ -33,9 +33,9 @@ class MainFragment : Fragment() {
         viewModel.getData().observe(viewLifecycleOwner, { insertMovie(it) })
     }
 
-    private fun insertMovie(moniesList: List<MoviesData>) = with(binding) {
+    private fun insertMovie(moviesList: List<MoviesTrendingData>) = with(binding) {
         adapter = MainFragmentAdapter(object : OnItemViewClickListener {
-            override fun onItemViewClick(movie: MoviesData) {
+            override fun onItemViewClick(movie: MoviesTrendingData) {
                 val manager = activity?.supportFragmentManager
                 manager?.let { manager ->
                     val bundle = Bundle().apply {
@@ -48,13 +48,13 @@ class MainFragment : Fragment() {
                 }
             }
         }).apply {
-            setMovie(moniesList)
+            setMovie(moviesList)
         }
         recyclerViewMovies.adapter = adapter
     }
 
     interface OnItemViewClickListener {
-        fun onItemViewClick(movie: MoviesData)
+        fun onItemViewClick(movie: MoviesTrendingData)
     }
 
     companion object {
