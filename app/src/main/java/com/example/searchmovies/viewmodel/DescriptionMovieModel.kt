@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.searchmovies.model.gson_model.movie.MovieDTO
 import com.example.searchmovies.model.gson_model.movie.MoviesData
-import com.example.searchmovies.model.loader.LoadDataFromAPI
+import com.example.searchmovies.model.loader.MoviesRepo
 
-class DescriptionMovieModel() : ViewModel() {
+class DescriptionMovieModel : ViewModel() {
 
     val liveDataToObserve: MutableLiveData<MoviesData> = MutableLiveData()
 
@@ -18,7 +18,7 @@ class DescriptionMovieModel() : ViewModel() {
     }
 
     private fun getDataMovies(id: Int): MoviesData {
-        val movieDTO: MovieDTO? = LoadDataFromAPI.loadMovie(id)
+        val movieDTO: MovieDTO? = MoviesRepo.api.getMovie(id, Constants.API_KEY).execute().body()
         var genres: String = ""
 
         return if (movieDTO != null) {

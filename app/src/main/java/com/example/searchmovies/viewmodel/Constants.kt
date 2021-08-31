@@ -9,5 +9,7 @@ class Constants {
         const val REMOVE_FAVORITE: String = "Удалено из избранного"
         const val API_KEY: String = "54d318be3576ce1d4dc6e85cf314c451"
         const val BROADCAST_CONNECTIVITY_ACTION: String = "Изменения способа связи"
+        const val BASE_URL: String = "https://api.themoviedb.org/3/"
+        const val IMAGE_URL: String = "https://image.tmdb.org/t/p/w500"
     }
 }
