@@ -37,7 +37,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        //viewModel.getData().observe(viewLifecycleOwner, { insertMovie(it) })
+        viewModel.getData().observe(viewLifecycleOwner, { insertMovie(it) })
     }
 
     private val boundServiceConnection: ServiceConnection = object : ServiceConnection {

@@ -20,7 +20,6 @@ object LoadDataFromAPI {
         val jsonStr: String =
             loadJSON("https://api.themoviedb.org/3/trending/movie/week?api_key=${Constants.API_KEY}&language=ru")
         return Gson().fromJson(jsonStr, TrendingDTO::class.java)
-
     }
 
     fun loadMovie(id: Int): MovieDTO? {

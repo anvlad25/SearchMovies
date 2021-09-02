@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import com.example.searchmovies.R
 import com.example.searchmovies.databinding.FragmentDescriptionMovieBinding
@@ -15,6 +16,7 @@ import com.example.searchmovies.model.gson_model.trending.MoviesTrendingData
 import com.example.searchmovies.showSnackbar
 import com.example.searchmovies.viewmodel.Constants
 import com.example.searchmovies.viewmodel.DescriptionMovieModel
+import com.squareup.picasso.Picasso
 
 class DescriptionMovie : Fragment() {
     private var _binding: FragmentDescriptionMovieBinding? = null
@@ -43,18 +45,26 @@ class DescriptionMovie : Fragment() {
     }
 
     private fun insertDescMovie(moviesData: MoviesData?, view: View) {
-        moviesData.let {
+        moviesData?.let {
             with(binding) {
-                descMovieGroup.text = moviesData!!.movieGroup
+                descMovieGroup.text = moviesData.movieGroup
                 descMovieName.text = moviesData.movieName
                 descMovieRating.text = moviesData.movieRating.toString()
                 descMovieDateFrom.text = moviesData.movieDateFrom
                 descMovieText.text = moviesData.movieDesc
                 favoriteButton.setImageResource(getFavoriteImg(moviesData.favorite))
+                insertPic(moviesData.poster_path, descMovieImage)
 
                 setFavoriteOrNot(moviesData, view) //!!!
             }
         }
+    }
+
+    private fun insertPic(posterPath: String, descMovieImage: ImageView) {
+        Picasso
+            .get()
+            .load("${Constants.IMAGE_URL}$posterPath")
+            .into(descMovieImage)
     }
 
     private fun setFavoriteOrNot(moviesData: MoviesData, view: View) {

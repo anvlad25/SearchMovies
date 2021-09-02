@@ -3,10 +3,13 @@ package com.example.searchmovies.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.searchmovies.databinding.ItemMovieBinding
 import com.example.searchmovies.model.gson_model.trending.MoviesTrendingData
 import com.example.searchmovies.ui.MainFragment
+import com.example.searchmovies.viewmodel.Constants
+import com.squareup.picasso.Picasso
 
 
 class MainFragmentAdapter(private var itemClickListener: MainFragment.OnItemViewClickListener) :
@@ -34,7 +37,15 @@ class MainFragmentAdapter(private var itemClickListener: MainFragment.OnItemView
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(movie: MoviesTrendingData) = with(binding) {
             movieText.text = movie.title
+            insertPic(movie.poster_path, movieImage)
             root.setOnClickListener { itemClickListener.onItemViewClick(movie) }
+        }
+
+        private fun insertPic(posterPath: String, movieImage: ImageView) {
+            Picasso
+                .get()
+                .load("${Constants.IMAGE_URL}$posterPath")
+                .into(movieImage)
         }
     }
 }
