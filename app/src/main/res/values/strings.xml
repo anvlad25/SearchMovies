@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">SearchMovies</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="description_movie_rating">Рейтинг: </string>
     <string name="description_movieD_date">Дата выхода: </string>
+    <string name="home">Главная</string>
+    <string name="search">Поиск</string>
+    <string name="favorite">Избранное</string>
+    <string name="settings">Настройки</string>
+    <string name="include_adult">Фильмы 18+</string>
 </resources>

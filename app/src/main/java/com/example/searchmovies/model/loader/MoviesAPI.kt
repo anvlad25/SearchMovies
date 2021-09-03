@@ -1,6 +1,7 @@
 package com.example.searchmovies.model.loader
 
 import com.example.searchmovies.model.gson_model.movie.MovieDTO
+import com.example.searchmovies.model.gson_model.searchmovie.SearchMoviesDTO
 import com.example.searchmovies.model.gson_model.trending.TrendingDTO
 import retrofit2.Call
 import retrofit2.http.GET
@@ -20,4 +21,13 @@ interface MoviesAPI {
         @Query("api_key") api_key: String,
         @Query("language") language: String = "ru"
     ) : Call<MovieDTO>
+
+    @GET("search/movie")
+    fun getMovieSearch(
+        @Query("api_key") api_key: String,
+        @Query("query") query: String,
+        @Query("include_adult") include_adult: Boolean = false,
+        @Query("language") language: String = "ru",
+        @Query("page") page: Int = 1
+    ) : Call<SearchMoviesDTO>
 }

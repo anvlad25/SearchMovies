@@ -11,6 +11,8 @@ import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import com.example.searchmovies.R
 import com.example.searchmovies.databinding.FragmentDescriptionMovieBinding
+import com.example.searchmovies.model.database.Database
+import com.example.searchmovies.model.database.NotesEntity
 import com.example.searchmovies.model.gson_model.movie.MoviesData
 import com.example.searchmovies.model.gson_model.trending.MoviesTrendingData
 import com.example.searchmovies.showSnackbar
@@ -22,6 +24,7 @@ class DescriptionMovie : Fragment() {
     private var _binding: FragmentDescriptionMovieBinding? = null
     private val binding get() = _binding!!
     private var favoriteButton: ImageButton? = null
+    private var idMovie: Int = -1
 
 
     override fun onCreateView(
@@ -40,9 +43,28 @@ class DescriptionMovie : Fragment() {
         val viewModel = ViewModelProvider(this).get(DescriptionMovieModel::class.java)
         viewModel.liveDataToObserve.observe(viewLifecycleOwner, { insertDescMovie(it, view) })
         arguments?.getParcelable<MoviesTrendingData>(Constants.MOVIE_DESC)?.let {
+            idMovie = it.id
             viewModel.getMoviesFromSource(it.id)
         }
+
+        binding.editTextDesc.setText(Database.db.notesDao().getDataByIdMovie(idMovie)[0].note)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        val dataBaseDAO = Database.db.notesDao()
+        if (idMovie != -1) {
+            if (dataBaseDAO.getDataByIdMovie(idMovie)[0].id >= 0) {
+                dataBaseDAO.update(toNotesEntity(idMovie, binding.editTextDesc.text.toString()))
+            } else {
+                dataBaseDAO.insert(toNotesEntity(idMovie, binding.editTextDesc.text.toString()))
+            }
+        }
+    }
+
+    private fun toNotesEntity(idMovie: Int, note: String): NotesEntity =
+        NotesEntity(0, idMovie, note)
 
     private fun insertDescMovie(moviesData: MoviesData?, view: View) {
         moviesData?.let {
