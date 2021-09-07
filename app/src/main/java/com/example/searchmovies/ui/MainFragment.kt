@@ -54,24 +54,6 @@ class MainFragment : Fragment() {
         }
     }
 
-    /*override fun onStart() {
-        super.onStart()
-        if (!isBound) {
-            val bindServiceIntent = Intent(context, TreadingService::class.java)
-            activity?.bindService(
-                bindServiceIntent, boundServiceConnection,
-                Context.BIND_AUTO_CREATE
-            )
-        }
-    }*/
-
-    /*override fun onStop() {
-        if (isBound) {
-            activity?.unbindService(boundServiceConnection)
-        }
-        super.onStop()
-    }*/
-
     private fun insertMovie(moviesList: List<MoviesTrendingData>) = with(binding) {
         adapter = MainFragmentAdapter(object : OnItemViewClickListener {
             override fun onItemViewClick(movie: MoviesTrendingData) {
