@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.searchmovies.R
 import com.example.searchmovies.databinding.FragmentMoviesBinding
 import com.example.searchmovies.model.gson_model.trending.MoviesTrendingData
-import com.example.searchmovies.model.service.TreadingService
 import com.example.searchmovies.model.service.TreadingService.ServiceBinder
 import com.example.searchmovies.ui.adapter.MainFragmentAdapter
 import com.example.searchmovies.viewmodel.Constants
@@ -55,7 +54,7 @@ class MainFragment : Fragment() {
         }
     }
 
-    override fun onStart() {
+    /*override fun onStart() {
         super.onStart()
         if (!isBound) {
             val bindServiceIntent = Intent(context, TreadingService::class.java)
@@ -64,14 +63,14 @@ class MainFragment : Fragment() {
                 Context.BIND_AUTO_CREATE
             )
         }
-    }
+    }*/
 
-    override fun onStop() {
+    /*override fun onStop() {
         if (isBound) {
             activity?.unbindService(boundServiceConnection)
         }
         super.onStop()
-    }
+    }*/
 
     private fun insertMovie(moviesList: List<MoviesTrendingData>) = with(binding) {
         adapter = MainFragmentAdapter(object : OnItemViewClickListener {
@@ -82,7 +81,7 @@ class MainFragment : Fragment() {
                         putParcelable(Constants.MOVIE_DESC, movie)
                     }
                     manager.beginTransaction()
-                        .add(R.id.container, newInstance(bundle))
+                        .replace(R.id.container, newInstance(bundle))
                         .addToBackStack("")
                         .commitAllowingStateLoss()
                 }

@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 class MoviesTrendingData(
     val id: Int,
     val title: String,
-    val poster_path: String = "Null",
+    val poster_path: String = "/1.jpg",
 ) : Parcelable

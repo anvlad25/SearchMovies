@@ -6,6 +6,6 @@ data class MovieDTO(
     val release_date: String = "1900-01-01",
     val vote_average: Float = 0.0f,
     val overview: String = "Null",
-    val poster_path: String = "Null",
+    val poster_path: String = "/1.jpg",
     val genres: List<GenresDTO>
 )
