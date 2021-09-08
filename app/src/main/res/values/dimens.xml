@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="marginMovieItem">5dp</dimen>
+    <dimen name="margin_15_dp">15dp</dimen>
+    <dimen name="main_container_text_size">10sp</dimen>
 </resources>

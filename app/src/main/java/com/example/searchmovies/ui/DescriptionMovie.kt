@@ -21,6 +21,7 @@ import com.example.searchmovies.viewmodel.DescriptionMovieModel
 import com.squareup.picasso.Picasso
 
 class DescriptionMovie : Fragment() {
+    private val EMPTY_MOVIE: Int = -1
     private var _binding: FragmentDescriptionMovieBinding? = null
     private val binding get() = _binding!!
     private var favoriteButton: ImageButton? = null
@@ -47,18 +48,22 @@ class DescriptionMovie : Fragment() {
             viewModel.getMoviesFromSource(it.id)
         }
 
-        binding.editTextDesc.setText(Database.db.notesDao().getDataByIdMovie(idMovie)[0].note)
+        Thread {
+            binding.editTextDesc.setText(Database.db.notesDao().getDataByIdMovie(idMovie)[0].note)
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
-        val dataBaseDAO = Database.db.notesDao()
-        if (idMovie != -1) {
-            if (dataBaseDAO.getDataByIdMovie(idMovie)[0].id >= 0) {
-                dataBaseDAO.update(toNotesEntity(idMovie, binding.editTextDesc.text.toString()))
-            } else {
-                dataBaseDAO.insert(toNotesEntity(idMovie, binding.editTextDesc.text.toString()))
+        Thread {
+            val dataBaseDAO = Database.db.notesDao()
+            if (idMovie != EMPTY_MOVIE) {
+                if (dataBaseDAO.getDataByIdMovie(idMovie).firstOrNull()?.id != null) {
+                    dataBaseDAO.update(toNotesEntity(idMovie, binding.editTextDesc.text.toString()))
+                } else {
+                    dataBaseDAO.insert(toNotesEntity(idMovie, binding.editTextDesc.text.toString()))
+                }
             }
         }
     }
