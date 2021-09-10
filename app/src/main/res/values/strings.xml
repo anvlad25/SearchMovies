@@ -11,4 +11,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="need_permissions_to_read_contacts">Необходимо разрешение для контактов</string>
     <string name="contacts">Контакты</string>
+    <string name="maps">Карты</string>
+    <string name="need_permissions_to_find_location">Необходимо разрешение геолокации</string>
 </resources>

@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         val searchFragment = SearchFragment()
         val settingsFragment = SettingsFragment()
         val contactsFragment = ContactsFragment()
+        val mapsFragment = MapsFragment()
 
         bottomMenu.setOnItemSelectedListener {
             when(it.itemId) {
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_search -> setCurrentFragment(searchFragment)
                 R.id.menu_settings -> setCurrentFragment(settingsFragment)
                 R.id.menu_contacts -> setCurrentFragment(contactsFragment)
+                R.id.menu_maps -> setCurrentFragment(mapsFragment)
             }
             true
         }
