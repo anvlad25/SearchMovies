@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.example.searchmovies.BuildConfig
 import com.example.searchmovies.R
 import com.example.searchmovies.databinding.FragmentMoviesBinding
 import com.example.searchmovies.model.gson_model.trending.MoviesTrendingData
@@ -35,6 +36,8 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.buildText.text = BuildConfig.BUILD_TYPE
+
         val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getData().observe(viewLifecycleOwner, { insertMovie(it) })
     }

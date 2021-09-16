@@ -3,6 +3,7 @@ package com.example.searchmovies.viewmodel
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.searchmovies.BuildConfig
 import com.example.searchmovies.model.App
 import com.example.searchmovies.model.gson_model.searchmovie.SearchData
 import com.example.searchmovies.model.gson_model.searchmovie.SearchMoviesDTO
@@ -26,7 +27,7 @@ class SearchMovieModel : ViewModel() {
         if(resultPref == null) {
             resultPref = false
         }
-        val searchDTO: SearchMoviesDTO? = MoviesRepo.api.getMovieSearch(Constants.API_KEY, query, resultPref).execute().body()
+        val searchDTO: SearchMoviesDTO? = MoviesRepo.api.getMovieSearch(BuildConfig.API_KEY, query, resultPref).execute().body()
 
         return if (searchDTO != null) {
             SearchData(

@@ -3,6 +3,7 @@ package com.example.searchmovies.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.searchmovies.BuildConfig
 import com.example.searchmovies.model.gson_model.movie.MovieDTO
 import com.example.searchmovies.model.gson_model.movie.MoviesData
 import com.example.searchmovies.model.loader.MoviesRepo
@@ -18,7 +19,7 @@ class DescriptionMovieModel : ViewModel() {
     }
 
     private fun getDataMovies(id: Int): MoviesData {
-        val movieDTO: MovieDTO? = MoviesRepo.api.getMovie(id, Constants.API_KEY).execute().body()
+        val movieDTO: MovieDTO? = MoviesRepo.api.getMovie(id, BuildConfig.API_KEY).execute().body()
         var genres: String = ""
 
         return if (movieDTO != null) {

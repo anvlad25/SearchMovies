@@ -2,9 +2,9 @@ package com.example.searchmovies.model.loader
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.example.searchmovies.BuildConfig
 import com.example.searchmovies.model.gson_model.movie.MovieDTO
 import com.example.searchmovies.model.gson_model.trending.TrendingDTO
-import com.example.searchmovies.viewmodel.Constants
 import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -18,13 +18,13 @@ object LoadDataFromAPI {
 
     fun loadTrending(): TrendingDTO? {
         val jsonStr: String =
-            loadJSON("https://api.themoviedb.org/3/trending/movie/week?api_key=${Constants.API_KEY}&language=ru")
+            loadJSON("https://api.themoviedb.org/3/trending/movie/week?api_key=${BuildConfig.API_KEY}&language=ru")
         return Gson().fromJson(jsonStr, TrendingDTO::class.java)
     }
 
     fun loadMovie(id: Int): MovieDTO? {
         val jsonStr: String =
-            loadJSON("https://api.themoviedb.org/3/movie/$id?api_key=${Constants.API_KEY}&language=ru&include_image_language=ru")
+            loadJSON("https://api.themoviedb.org/3/movie/$id?api_key=${BuildConfig.API_KEY}&language=ru&include_image_language=ru")
         return Gson().fromJson(jsonStr, MovieDTO::class.java)
     }
 
