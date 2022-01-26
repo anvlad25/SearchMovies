@@ -3,6 +3,7 @@ package com.example.searchmovies.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.searchmovies.BuildConfig
 import com.example.searchmovies.model.gson_model.trending.MoviesTrendingData
 import com.example.searchmovies.model.gson_model.trending.TrendingDTO
 import com.example.searchmovies.model.loader.MoviesRepo
@@ -25,7 +26,7 @@ class MainViewModel(private val liveDataToObserve: MutableLiveData<List<MoviesTr
     }
 
     private fun getTreadingMovies(): MutableList<MoviesTrendingData> {
-        val trendingDTO: TrendingDTO? = MoviesRepo.api.getTrending(Constants.API_KEY).execute().body()
+        val trendingDTO: TrendingDTO? = MoviesRepo.api.getTrending(BuildConfig.API_KEY).execute().body()
         val listTrendingMovies: MutableList<MoviesTrendingData> = mutableListOf()
 
         trendingDTO?.let { trend ->
